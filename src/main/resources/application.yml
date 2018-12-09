@@ -1,0 +1,23 @@
+#server.port: 8083
+
+
+spring:
+  kafka:
+    consumer:
+      auto-offset-reset: earliest
+#      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  cloud:
+    stream:
+      kafka:
+        binder:
+          configuration:
+            security:
+              protocol: PLAINTEXT
+          zkNodes: 127.0.0.1:2181
+          brokers: 127.0.0.1:9092
+      bindings:
+        input:
+          destination: trigger-topic
+          group: changeme
+debug: true
