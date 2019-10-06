@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.5.10.RELEASE'
+        springBootVersion = '2.1.9.RELEASE'
     }
     repositories {
         maven  { url "https://repo.spring.io/libs-milestone" }
@@ -8,7 +8,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath("com.commercehub.gradle.plugin:gradle-avro-plugin:0.14.1")
+        classpath("com.commercehub.gradle.plugin:gradle-avro-plugin:0.16.0")
     }
 }
 
@@ -16,9 +16,10 @@ apply plugin: 'java'
 apply plugin: 'com.commercehub.gradle.plugin.avro'
 apply plugin: 'org.springframework.boot'
 
-group = 'com.arity'
+group = 'io.quell'
 version = '1.0'
-sourceCompatibility = 1.8
+sourceCompatibility = 1.11
+targetCompatibility = 1.11
 
 repositories {
     mavenCentral()
@@ -26,17 +27,19 @@ repositories {
 
 
 ext {
-	springCloudVersion = 'Edgware.SR2'
+	springCloudVersion = 'Greenwich.SR3'
 }
 
 dependencies {
 	compile('org.springframework.cloud:spring-cloud-stream-binder-kafka')
-    compile 'org.apache.avro:avro:1.8.2'
+    compile 'org.apache.avro:avro:1.9.1'
 
-	compileOnly('org.projectlombok:lombok')
+	compileOnly('org.projectlombok:lombok:1.18.10')
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
+
+apply plugin: "io.spring.dependency-management"
 
 dependencyManagement {
 	imports {
