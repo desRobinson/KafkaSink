@@ -1,4 +1,4 @@
-FROM java:8
+FROM openjdk:11
 
 RUN mkdir -p /data/app/bin /data/app/run
 RUN apt-get update && apt-get -y --no-install-recommends install net-tools
